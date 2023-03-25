@@ -11,7 +11,7 @@
             {
                 new Sensor("Датчик высоты"),
                 new Sensor("Датчик тангажа", true, false),
-                new Sensor("Датчик погодных условий"),
+                new Sensor("Датчик погодных условий", true),
                 new Sensor("Радар")
             };
             var airsystem = new AirborneSystem(listSensors);
@@ -22,12 +22,18 @@
 
             var checkListNameSensors = new List<string>()
             {
-                "Датчик тангажа"
+                "Датчик погодных условий",
+                "Датчик высоты",
+                "Датчик тангажа",
+                
             };
 
             commander.SetFlight(airbase, pilot, plane, checkListNameSensors);
             pilot.StartFlight();
             pilot.CheckSensors();
+            pilot.FinishFlight();
+
+            pilot.CreateReport(commander);
         }
     }
 }
