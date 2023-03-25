@@ -23,10 +23,13 @@
 
         public void FinishFlight()
         {
-            if (Plane != null && _allWell == true)
+            if(Plane != null)
             {
-                Plane.OffAirbornSystem();
-                Plane.InFlight = false;
+                if (_allWell == true)
+                {
+                    Plane.OffAirbornSystem();
+                    Plane.InFlight = false;
+                }
             }
             else
                 throw new Exception("Самолёт не назначен или самолёт разбился.");

@@ -8,10 +8,10 @@ namespace TEST_Lab2
 {
     public class AirborneSystem : State
     {
-        public List<Sensor> Sensors { get; set; }
+        public List<Sensor> Sensors { get; private set; }
         public AirborneSystem(List<Sensor> sensors)
         {
-            Sensors = sensors;
+            Sensors = new List<Sensor>(sensors);
         }
 
         public bool OnSensors()
