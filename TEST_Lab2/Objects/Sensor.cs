@@ -6,6 +6,7 @@
 
         public bool HaveSoftwareProblem;
         public bool IsFixedSoftwareProblem;
+        public bool IsChecked = false;
         public Sensor(string name, bool isBroken = false, bool isFixedSoftwareProblem = true)
         {
             Name = name;
@@ -13,9 +14,15 @@
             IsFixedSoftwareProblem = isFixedSoftwareProblem;
         }
 
-        public bool CheckWork()
+        public bool? CheckWork()
         {
-            return HaveSoftwareProblem;
+            if (IsActive == true)
+            {
+                IsChecked = true;
+                return HaveSoftwareProblem;
+            }
+            else
+                return null;
         }
     }
 }

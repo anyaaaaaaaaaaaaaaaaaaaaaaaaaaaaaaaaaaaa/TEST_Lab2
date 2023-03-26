@@ -2,21 +2,21 @@
 {
     public abstract class State
     {
-        private bool _isActive;
+        public bool IsActive { get; private set; }
 
         public void On()
         {
-            _isActive = true;
+            IsActive = true;
         }
 
         public void Off()
         {
-            _isActive = false;
+            IsActive = false;
         }
 
         public bool GetActiveStatus()
         {
-            return _isActive;
+            return IsActive;
         }
     }
 }

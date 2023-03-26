@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TEST_Lab2
+﻿namespace TEST_Lab2
 {
     public class AirborneSystem : State
     {
@@ -14,32 +8,46 @@ namespace TEST_Lab2
             Sensors = new List<Sensor>(sensors);
         }
 
-        public bool OnSensors()
+        public bool? OnSensors()
         {
-            foreach (var sensor in Sensors)
+            if (IsActive == true)
             {
-                sensor.On();
+                foreach (var sensor in Sensors)
+                {
+                    sensor.On();
+                }
+                return true;
             }
-            return true;
+            else
+                return null;
         }
 
-        public bool OffSensors()
+        public bool? OffSensors()
         {
-            foreach (var sensor in Sensors)
+            if (IsActive == true)
             {
-                sensor.Off();
+                foreach (var sensor in Sensors)
+                {
+                    sensor.Off();
+                }
+                return true;
             }
-            return true;
+            else
+                return null;
         }
 
         public Sensor CheckSensor(Sensor sensor, List<Sensor> BrokenSensors)
         {
-            var isBroken = sensor.CheckWork();
-            if (isBroken)
+            if (IsActive == true)
             {
-                EmergencyResponseSystem.FixedProblemSensor(sensor);
-                BrokenSensors.Add(sensor);
+                var isBroken = sensor.CheckWork();
+                if (isBroken == true)
+                {
+                    EmergencyResponseSystem.FixedProblemSensor(sensor);
+                    BrokenSensors.Add(sensor);
+                }
             }
+            
             return sensor;
         }
     }

@@ -25,7 +25,6 @@
                 "Датчик погодных условий",
                 "Датчик высоты",
                 "Датчик тангажа",
-                
             };
 
             commander.SetFlight(airbase, pilot, plane, checkListNameSensors);
