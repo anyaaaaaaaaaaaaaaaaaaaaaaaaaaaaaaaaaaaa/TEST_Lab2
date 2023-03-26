@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using TEST_Lab2;
+using Tests;
 
 namespace TestsProperties
 {
@@ -148,25 +149,5 @@ namespace TestsProperties
             var sensor = new Sensor(name);
             Assert.That(sensor.Name, Is.EqualTo(name));
         }
-    }
-
-
-
-    public static class Data
-    {
-        public static List<Sensor> listSensors = new List<Sensor>()
-        {
-            new Sensor("Датчик высоты"),
-            new Sensor("Датчик тангажа", true, false),
-            new Sensor("Датчик погодных условий", true),
-            new Sensor("Радар")
-        };
-
-        public static List<string> listNameSensors = new List<string>()
-        {
-            "Датчик погодных условий",
-            "Датчик высоты",
-            "Датчик тангажа",
-        };
     }
 }

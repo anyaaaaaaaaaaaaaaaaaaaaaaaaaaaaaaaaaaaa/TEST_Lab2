@@ -38,7 +38,7 @@
             return AirborneSystem.GetActiveStatus();
         }
 
-        public bool OffAirbornSystem()
+        public bool OffAirborneSystem()
         {
             AirborneSystem.Off();
             AirborneSystem.OffSensors();

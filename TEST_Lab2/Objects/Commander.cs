@@ -1,4 +1,4 @@
-﻿namespace TEST_Lab2
+﻿    namespace TEST_Lab2
 {
     public class Commander : Human
     {
@@ -13,9 +13,10 @@
             pilot.CheckListNameSensors = checkListNameSensors;
         }
 
-        public void ShowReport(string report)
+        public string ShowReport(string report)
         {
             Console.WriteLine(report);
+            return report;
         }
     }
 }

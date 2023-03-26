@@ -3,7 +3,7 @@
     public class Airbase
     {
         public string Name { get; private set; }
-        public List<Plane> Plains { get; set; }
+        public List<Plane> Plains { get; private set; }
 
         public Airbase(string name)
         {

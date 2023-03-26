@@ -7,7 +7,7 @@
         public List<string> CheckListNameSensors { get; set; } = new List<string>();
         public List<Sensor> BrokenSensors = new List<Sensor>();
 
-        private bool _allWell = true;
+        public bool AllWell = true;
 
         public void StartFlight()
         {
@@ -25,9 +25,9 @@
         {
             if(Plane != null)
             {
-                if (_allWell == true)
+                if (AllWell == true)
                 {
-                    Plane.OffAirbornSystem();
+                    Plane.OffAirborneSystem();
                     Plane.InFlight = false;
                 }
             }
@@ -35,9 +35,9 @@
                 throw new Exception("Самолёт не назначен или самолёт разбился.");
         }
 
-        private void CancelCheckSensors()
+        public void CancelCheckSensors()
         {
-            _allWell = false;
+            AllWell = false;
         }
 
         public void CheckSensors()
@@ -54,7 +54,7 @@
                             Plane.AirborneSystem.CheckSensor(sensor, BrokenSensors);
                         }
 
-                        if (_allWell == false)
+                        if (AllWell == false)
                         {
                             Plane.IsPlaneExist = false;
                             return;
@@ -70,7 +70,7 @@
                 throw new Exception("Самолёт не назначен.");
         }
 
-        public void CreateReport(Commander commander)
+        public string CreateReport(Commander commander)
         {
             if(Plane != null)
             {
@@ -97,6 +97,7 @@
                 }
 
                 commander.ShowReport(report);
+                return report;
             }
             else
                 throw new Exception("Самолёт не назначен.");
