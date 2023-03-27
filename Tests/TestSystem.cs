@@ -49,7 +49,8 @@ namespace TestSystem
             Assert.That(commander.Name, Is.EqualTo("Михаил"));
             var airbase = new Airbase("Сокольники 1");
             Assert.That(airbase.Name, Is.EqualTo("Сокольники 1"));
-            var listSensors = TestData.listSensors.Where(p => p.HaveSoftwareProblem == true && p.IsFixedSoftwareProblem == true).ToList();
+            var listSensors = TestData.listSensors.Where(p => p.HaveSoftwareProblem == true && 
+                                                              p.IsFixedSoftwareProblem == true).ToList();
             var airborneSystem = new AirborneSystem(listSensors);
             Assert.That(airborneSystem.Sensors, Is.EqualTo(listSensors));
             var plane = new Plane(1, "СУ-35", airborneSystem);
@@ -84,7 +85,8 @@ namespace TestSystem
             Assert.That(commander.Name, Is.EqualTo("Михаил"));
             var airbase = new Airbase("Сокольники 1");
             Assert.That(airbase.Name, Is.EqualTo("Сокольники 1"));
-            var listSensors = TestData.listSensors.Where(p => p.HaveSoftwareProblem == true && p.IsFixedSoftwareProblem == false).ToList();
+            var listSensors = TestData.listSensors.Where(p => p.HaveSoftwareProblem == true && 
+                                                              p.IsFixedSoftwareProblem == false).ToList();
             var airborneSystem = new AirborneSystem(listSensors);
             Assert.That(airborneSystem.Sensors, Is.EqualTo(listSensors));
             var plane = new Plane(1, "СУ-35", airborneSystem);
