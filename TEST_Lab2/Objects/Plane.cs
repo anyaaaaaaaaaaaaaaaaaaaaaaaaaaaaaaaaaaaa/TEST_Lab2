@@ -22,7 +22,7 @@
                     NotFlight?.Invoke(this);
             }
         }
-        private bool _inFlight;
+        private bool _inFlight = false;
 
         public Plane(int id, string model, AirborneSystem airborneSystem)
         {

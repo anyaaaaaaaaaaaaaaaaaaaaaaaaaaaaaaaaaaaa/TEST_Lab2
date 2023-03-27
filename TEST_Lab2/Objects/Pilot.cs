@@ -3,11 +3,12 @@
     public class Pilot : Human
     {
         public Pilot(string name) : base(name) { }
-        public Plane? Plane { get; set; }
+        public Plane? Plane { get { return _plane; } set { _plane = value; AllWell = true; } }
+        private Plane? _plane;
         public List<string> CheckListNameSensors { get; set; } = new List<string>();
         public List<Sensor> BrokenSensors = new List<Sensor>();
 
-        public bool AllWell = true;
+        public bool AllWell;
 
         public void StartFlight()
         {

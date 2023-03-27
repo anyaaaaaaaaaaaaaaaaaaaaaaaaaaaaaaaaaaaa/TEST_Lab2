@@ -295,23 +295,23 @@ namespace TestsMethods
     }
 
     [TestFixture]
-    public class TestMethodsPlain
+    public class TestMethodsPlane
     {
         [Test]
-        public void Plain_OnAirborneSystem()
+        public void Plane_OnAirborneSystem()
         {
-            var plain = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
-            plain.OnAirborneSystem();
-            Assert.IsTrue(plain.AirborneSystem.IsActive);
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
+            plane.OnAirborneSystem();
+            Assert.IsTrue(plane.AirborneSystem.IsActive);
         }
 
         [Test]
-        public void Plain_OffAirborneSystem()
+        public void Plane_OffAirborneSystem()
         {
-            var plain = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
-            plain.OnAirborneSystem();
-            plain.OffAirborneSystem();
-            Assert.IsFalse(plain.AirborneSystem.IsActive);
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
+            plane.OnAirborneSystem();
+            plane.OffAirborneSystem();
+            Assert.IsFalse(plane.AirborneSystem.IsActive);
         }
     }
 
