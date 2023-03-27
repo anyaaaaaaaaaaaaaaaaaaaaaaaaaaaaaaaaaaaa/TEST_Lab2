@@ -31,18 +31,16 @@
             AirborneSystem = airborneSystem;
         }
 
-        public bool OnAirborneSystem()
+        public void OnAirborneSystem()
         {
             AirborneSystem.On();
             AirborneSystem.OnSensors();
-            return AirborneSystem.GetActiveStatus();
         }
 
-        public bool OffAirborneSystem()
+        public void OffAirborneSystem()
         {
             AirborneSystem.Off();
             AirborneSystem.OffSensors();
-            return AirborneSystem.GetActiveStatus();
         }
 
         public delegate void Flight(Plane plane);

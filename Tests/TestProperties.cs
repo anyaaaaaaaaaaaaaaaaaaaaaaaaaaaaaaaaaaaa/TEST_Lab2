@@ -28,8 +28,8 @@ namespace TestsProperties
         [Test]
         public void AirborneSystem_List_Sensors_Added()
         {
-            var airborneSystem = new AirborneSystem(Data.listSensors);
-            Assert.That(airborneSystem.Sensors, Is.EqualTo(Data.listSensors));
+            var airborneSystem = new AirborneSystem(TestData.listSensors);
+            Assert.That(airborneSystem.Sensors, Is.EqualTo(TestData.listSensors));
         }
     }
 
@@ -76,7 +76,7 @@ namespace TestsProperties
         public void Pilot_Plane_Added()
         {
             var pilot = new Pilot("Василий");
-            var plane = new Plane(1, "СУ-35", new AirborneSystem(Data.listSensors));
+            var plane = new Plane(1, "СУ-35", new AirborneSystem(TestData.listSensors));
             pilot.Plane = plane;
             Assert.That(pilot.Plane, Is.EqualTo(plane));
         }
@@ -99,8 +99,8 @@ namespace TestsProperties
         public void Pilot_CheckListNameSensors_SetItems()
         {
             var pilot = new Pilot("Василий");
-            pilot.CheckListNameSensors = Data.listNameSensors;
-            Assert.That(pilot.CheckListNameSensors, Is.EqualTo(Data.listNameSensors));
+            pilot.CheckListNameSensors = TestData.listNameSensors;
+            Assert.That(pilot.CheckListNameSensors, Is.EqualTo(TestData.listNameSensors));
         }
 
         [Test]
@@ -116,8 +116,8 @@ namespace TestsProperties
         public void Pilot_CheckListNameSensors_RemoveItem()
         {
             var pilot = new Pilot("Василий");
-            pilot.CheckListNameSensors = Data.listNameSensors;
-            var removeNameSensor = Data.listNameSensors[new Random().Next(Data.listNameSensors.Count)];
+            pilot.CheckListNameSensors = TestData.listNameSensors;
+            var removeNameSensor = TestData.listNameSensors[new Random().Next(TestData.listNameSensors.Count)];
             pilot.CheckListNameSensors.Remove(removeNameSensor);
             Assert.That(pilot.CheckListNameSensors, !Has.Member(removeNameSensor));
         }
@@ -131,7 +131,7 @@ namespace TestsProperties
         {
             var id = 1;
             var model = "СУ-35";
-            var airborneSystem = new AirborneSystem(Data.listSensors);
+            var airborneSystem = new AirborneSystem(TestData.listSensors);
             var plane = new Plane(id, model, airborneSystem);
             Assert.That(plane.Id, Is.EqualTo(id));
             Assert.That(plane.Model, Is.EqualTo(model));

@@ -13,6 +13,7 @@
 
         public void ArrivalPlane(Plane plane)
         {
+            
             Plains.Add(plane);
         }
 

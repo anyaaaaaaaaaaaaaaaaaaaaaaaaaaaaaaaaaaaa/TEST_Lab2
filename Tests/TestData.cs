@@ -2,7 +2,7 @@
 
 namespace Tests
 {
-    public static class Data
+    public static class TestData
     {
         public static List<Sensor> listSensors = new List<Sensor>()
         {

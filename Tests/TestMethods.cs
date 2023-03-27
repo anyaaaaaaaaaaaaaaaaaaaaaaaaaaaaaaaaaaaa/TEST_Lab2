@@ -11,7 +11,7 @@ namespace TestsMethods
         public void Airbase_ArrivalPlane()
         {
             var airbase = new Airbase("Сахалин");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             airbase.ArrivalPlane(plane);
             Assert.That(airbase.Plains, Has.Member(plane));
         }
@@ -20,7 +20,7 @@ namespace TestsMethods
         public void Airbase_DeparturePlane()
         {
             var airbase = new Airbase("Сахалин");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             airbase.ArrivalPlane(plane);
             Assert.That(airbase.Plains, Has.Member(plane));
             airbase.DeparturePlane(plane);
@@ -34,7 +34,7 @@ namespace TestsMethods
         [Test]
         public void AirborneSystem_On()
         {
-            var airborneSystem = new AirborneSystem(Data.listSensors);
+            var airborneSystem = new AirborneSystem(TestData.listSensors);
             airborneSystem.On();
             Assert.That(airborneSystem.IsActive, Is.True);
         }
@@ -42,7 +42,7 @@ namespace TestsMethods
         [Test]
         public void AirborneSystem_Off()
         {
-            var airborneSystem = new AirborneSystem(Data.listSensors);
+            var airborneSystem = new AirborneSystem(TestData.listSensors);
             airborneSystem.Off();
             Assert.That(airborneSystem.IsActive, Is.False);
         }
@@ -50,7 +50,7 @@ namespace TestsMethods
         [Test]
         public void AirborneSystem_OnSensors()
         {
-            var airborneSystem = new AirborneSystem(Data.listSensors);
+            var airborneSystem = new AirborneSystem(TestData.listSensors);
             airborneSystem.On();
             var result = airborneSystem.OnSensors();
             Assert.That(result, Is.True);
@@ -63,7 +63,7 @@ namespace TestsMethods
         [Test]
         public void AirborneSystem_OffSensors()
         {
-            var airborneSystem = new AirborneSystem(Data.listSensors);
+            var airborneSystem = new AirborneSystem(TestData.listSensors);
             airborneSystem.On();
             airborneSystem.OnSensors();
             var result = airborneSystem.OffSensors();
@@ -113,8 +113,8 @@ namespace TestsMethods
         {
             var airbase = new Airbase("Сахалин");
             var pilot = new Pilot("Михаил");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
-            var checkListSensors = Data.listNameSensors;
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
+            var checkListSensors = TestData.listNameSensors;
             var commander = new Commander("Николай");
             commander.SetFlight(airbase, pilot, plane, checkListSensors);
             Assert.That(airbase.Plains, Has.Member(plane));
@@ -138,7 +138,7 @@ namespace TestsMethods
         [Test]
         public void EmergencyReponseSystem_FixedProblemSensor()
         {
-            var sensor = Data.listSensors.First(p => p.HaveSoftwareProblem == true && p.IsFixedSoftwareProblem == true);
+            var sensor = TestData.listSensors.First(p => p.HaveSoftwareProblem == true && p.IsFixedSoftwareProblem == true);
             EmergencyResponseSystem.FixedProblemSensor(sensor);
             Assert.That(sensor.HaveSoftwareProblem, Is.False);
         }
@@ -158,7 +158,7 @@ namespace TestsMethods
         public void Pilot_StartFlight_SetPlane()
         {
             var pilot = new Pilot("Илья");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             pilot.Plane = plane;
             pilot.StartFlight();
             Assert.That(pilot.Plane.InFlight, Is.True);
@@ -175,7 +175,7 @@ namespace TestsMethods
         public void Pilot_FinishFlight_SetPlane()
         {
             var pilot = new Pilot("Илья");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             pilot.Plane = plane;
             pilot.StartFlight();
             pilot.FinishFlight();
@@ -201,7 +201,7 @@ namespace TestsMethods
         public void Pilot_CheckSensors_SetPlane_NotFly()
         {
             var pilot = new Pilot("Алексей");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             plane.InFlight = false;
             pilot.Plane = plane;
             Assert.That(() => pilot.CheckSensors(), Throws.Exception);
@@ -211,7 +211,7 @@ namespace TestsMethods
         public void Pilot_CheckSensors_SetPlain_Fly_WithNormalSensors()
         {
             var pilot = new Pilot("Алексей");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             var normalSensor = plane.AirborneSystem.Sensors.First(p => p.HaveSoftwareProblem == false);
             pilot.Plane = plane;
             pilot.CheckListNameSensors = new List<string>() { normalSensor.Name };
@@ -224,7 +224,7 @@ namespace TestsMethods
         public void Pilot_CheckSensors_SetPlain_Fly_WithBrokenNotFixedSensors()
         {
             var pilot = new Pilot("Алексей");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             var brokenSensor = plane.AirborneSystem.Sensors.First(p => p.HaveSoftwareProblem == true && p.IsFixedSoftwareProblem == false);
             pilot.Plane = plane;
             pilot.CheckListNameSensors = new List<string>() { brokenSensor.Name };
@@ -247,8 +247,8 @@ namespace TestsMethods
             var commander = new Commander("Максим");
             var pilot = new Pilot("Станислав");
             var airbase = new Airbase("Нытва");
-            var plane = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
-            var checkListNameSensors = Data.listNameSensors;
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
+            var checkListNameSensors = TestData.listNameSensors;
             commander.SetFlight(airbase, pilot, plane, checkListNameSensors);
             pilot.StartFlight();
             pilot.CheckSensors();
@@ -274,7 +274,7 @@ namespace TestsMethods
                 if (plane.AirborneSystem.Sensors.Any(p => p.HaveSoftwareProblem == true))
                 {
                     report += "\tСломанные датчики\n";
-                    var sensors = Data.listSensors.Where(p => p.HaveSoftwareProblem == true);
+                    var sensors = TestData.listSensors.Where(p => p.HaveSoftwareProblem == true);
                     foreach (var sensor in sensors)
                     {
                         if (sensor.IsFixedSoftwareProblem == true)
@@ -300,18 +300,18 @@ namespace TestsMethods
         [Test]
         public void Plain_OnAirborneSystem()
         {
-            var plain = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
-            var status = plain.OnAirborneSystem();
-            Assert.IsTrue(status);
+            var plain = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
+            plain.OnAirborneSystem();
+            Assert.IsTrue(plain.AirborneSystem.IsActive);
         }
 
         [Test]
         public void Plain_OffAirborneSystem()
         {
-            var plain = Data.listPlanes[new Random().Next(Data.listPlanes.Count)];
+            var plain = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             plain.OnAirborneSystem();
-            var status = plain.OffAirborneSystem();
-            Assert.IsFalse(status);
+            plain.OffAirborneSystem();
+            Assert.IsFalse(plain.AirborneSystem.IsActive);
         }
     }
 

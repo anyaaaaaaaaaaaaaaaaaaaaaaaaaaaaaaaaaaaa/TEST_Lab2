@@ -13,10 +13,5 @@
         {
             IsActive = false;
         }
-
-        public bool GetActiveStatus()
-        {
-            return IsActive;
-        }
     }
 }
