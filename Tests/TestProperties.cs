@@ -76,7 +76,7 @@ namespace TestsProperties
         public void Pilot_Plane_Added()
         {
             var pilot = new Pilot("Василий");
-            var plane = new Plane(1, "СУ-35", new AirborneSystem(TestData.listSensors));
+            var plane = TestData.listPlanes[new Random().Next(TestData.listPlanes.Count)];
             pilot.Plane = plane;
             Assert.That(pilot.Plane, Is.EqualTo(plane));
         }
